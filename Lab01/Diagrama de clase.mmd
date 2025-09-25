@@ -6,9 +6,19 @@ classDiagram
         -carrera: string
         +registrar(): void
         +editarPerfil(): void
-        +consultarCursos(): List<Curso>
+        +consultarCursosDisponible(): List<Curso>
+        +consultarCursosMatriculados(): List<Curso>
     }
- 
+
+    class Profesor {
+        -id: int
+        -nombre: string
+        -email: string
+        -especialidad: string
+        +asignarCurso(): void
+        +editarPerfil(): void
+    }
+
     class Curso {
         -codigo: string
         -nombre: string
@@ -16,5 +26,25 @@ classDiagram
         +matricular(): void
         +retirar(): void
     }
- 
-    Estudiante "1" --> "*" Curso : matrícula
+
+    class Periodo {
+        -anio: int
+        -nombre: string
+        -activo: boolean
+        +iniciarPeriodo(): void
+        +finalizarPeriodo(): void
+    }
+
+    class Grupo {
+        -idGrupo: int
+        -idCurso: string
+        -idPeriodo: int
+        -idProfesor: int
+        -horario: string
+        +asignarProfesor(): void
+        +definirHorario(): void
+    }
+    Estudiante "1" --> "*" Grupo : matriculado en
+    Profesor "1" --> "*" Grupo : imparte
+    Curso "1" --> "*" Grupo : ofrecido en
+    Periodo "1" --> "*" Grupo : contiene
