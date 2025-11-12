@@ -1,0 +1,88 @@
+body {
+  background-color: #b5b5b5;
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.header {
+  background-color: #2f2f2f;
+  padding: 20px;
+  text-align: center;
+}
+
+.titulo-principal {
+  color: rgb(0, 0, 0);
+  text-shadow: 1px 1px 2px rgb(0, 153, 255), 0 0 1em rgb(255, 255, 255),
+  0 0 0.2em rgb(255, 0, 200);
+  margin: 0;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 0;
+}
+
+/* TARJETA */
+.tarjeta {
+  background-color: #efefef;
+  width: 350px;
+  padding: 30px;
+  border-radius: 40px;
+  box-shadow: 0 8px 20px rgb(0, 194, 253);
+  text-align: center;
+  transition: transform 0.4s ease, box-shadow 1s ease; /* transición para hover */
+}
+
+.tarjeta:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 30px rgb(255, 0, 183);
+}
+
+.tarjeta-titulo {
+  margin-bottom: 20px;
+  font-size: 24px;
+  text-shadow: 6px 6px 4px rgba(0, 17, 255, 0.3);
+}
+
+.tarjeta-texto {
+  margin-bottom: 20px;
+  color: #000000;
+  text-shadow: 1px 1px 2px rgba(0, 174, 255, 0.1);
+}
+
+.tarjeta-boton {
+  background-color: #056ee6;
+  color: rgb(255, 255, 255);
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow:  4px 10px rgba(0, 170, 255, 0.2);
+  transition: background-color 0.4s ease, transform 0.3s ease;
+}
+
+.tarjeta-boton:hover {
+  background-color: #ff00bb;
+  transform: translateY(-3px);
+}
+
+.footer {
+  background-color: #383838;
+  padding: 15px;
+  text-align: center;
+}
+
+.footer-texto {
+  color: rgb(0, 0, 0);
+  margin: 0;
+  text-shadow: 1px 1px 2px rgb(5, 155, 255), 0 0 1em rgb(255, 255, 255),
+  0 0 0.2em rgb(255, 0, 200);
+}
