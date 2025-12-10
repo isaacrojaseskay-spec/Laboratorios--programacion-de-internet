@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejemplo Base - JavaScript Interactivo</title>
+
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 20px; 
+        }
+
+        /* Canvas */
+        #canvasArea { 
+            border: 1px solid black; 
+            margin-bottom: 20px;
+        }
+
+        /* Drag items */
+        .drag-box {
+            width: 100px;
+            height: 100px;
+            color: #ffffff;
+            text-align: center;
+            line-height: 100px;
+            cursor: move;
+            margin-bottom: 15px;
+        }
+
+        #drag1 { background-color: #3498db; } /* Azul */
+        #drag2 { background-color: #e74c3c; } /* Rojo */
+
+        /* Drop zones */
+        .drop-zone {
+            width: 180px;
+            height: 180px;
+            border: 2px dashed #cccccc;
+            display: inline-block;
+            margin-right: 15px;
+            text-align: center;
+            font-size: 14px;
+            vertical-align: top;
+            padding-top: 10px;
+            background-color: #f9f9f9;
+        }
+
+        .drop-zone.over {
+            border-color: #000;
+            background-color: #e9e9e9;
+        }
+
+        img.preview {
+            display: block;
+            max-width: 100%;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Canvas</h2>
+    <canvas id="canvasArea" width="350" height="220"></canvas><br>
+    <button onclick="draw()">Dibujar círculo</button>
+
+    <h2>Drag and Drop</h2>
+
+    <div id="drag1" class="drag-box" draggable="true" ondragstart="drag(event)">
+        Arrástrame
+    </div>
+
+    <div id="drag2" class="drag-box" draggable="true" ondragstart="drag(event)">
+        Arrástrame
+    </div>
+
+    <br>
+
+    <div id="drop1" class="drop-zone" ondrop="drop(event)" ondragover="allowDrop(event)">Caja 1</div>
+    <div id="drop2" class="drop-zone" ondrop="drop(event)" ondragover="allowDrop(event)">Caja 2</div>
+    <div id="drop3" class="drop-zone" ondrop="drop(event)" ondragover="allowDrop(event)">Caja 3</div>
+
+    <h2>Lectura de Archivos</h2>
+    <input type="file" onchange="previewFile(event)">
+    <img id="preview" class="preview" src="">
+
+    <script>
+        /* Canvas */
+        function draw() {
+            const canvas = document.getElementById('canvasArea');
+            const ctx = canvas.getContext('2d');
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            ctx.beginPath();
+            ctx.arc(170, 110, 60, 0, Math.PI * 2);
+            ctx.fillStyle = '#ffee00';
+            ctx.fill();
+        }
+
+        /* Drag and drop */
+        function allowDrop(ev) {
+            ev.preventDefault();
+            ev.target.classList.add("over");
+        }
+
+        function drag(ev) {
+            ev.dataTransfer.setData("text", ev.target.id);
+        }
+
+        function drop(ev) {
+            ev.preventDefault();
+            ev.target.classList.remove("over");
+
+            const data = ev.dataTransfer.getData("text");
+            ev.target.appendChild(document.getElementById(data));
+        }
+
+        /* FileReader */
+        function previewFile(event) {
+            const reader = new FileReader();
+            reader.onload = function () {
+                const output = document.getElementById('preview');
+                output.src = reader.result;
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
+
+</body>
+</html>
